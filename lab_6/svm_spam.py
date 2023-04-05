@@ -82,6 +82,19 @@ clf.fit(X_train, y_train)
 # FIXME: Predict the labelling.
 y_pred = clf.predict(X_train)
 
+import matplotlib.pyplot as plt
+cf_mat = metrics.confusion_matrix(y_train,y_pred)
+fig, ax = plt.subplots()
+im = ax.imshow(cf_mat)
+ax.set_title("confusion matrix")
+ax.set_xticks([0,1],["not spam","spam"])
+ax.set_yticks([0,1],["not spam","spam"])
+for i in range(len(cf_mat)):
+    for j in range(len(cf_mat[0])):
+        ax.text(j, i, cf_mat[i, j], ha="center", va="center", color="w")
+fig.tight_layout()
+plt.show()
+
 # FIXME: Compute the training accuracy.
 acc_train = metrics.accuracy_score(y_train, y_pred)
 print('Training Accuracy: {:.2f}%\n'.format(acc_train * 100))
@@ -98,6 +111,18 @@ print('\nEvaluating the trained Linear SVM on a test set ...\n')
 
 # FIXME: Predict the labelling.
 y_pred = clf.predict(X_test)
+import matplotlib.pyplot as plt
+cf_mat = metrics.confusion_matrix(y_test,y_pred)
+fig, ax = plt.subplots()
+im = ax.imshow(cf_mat)
+ax.set_title("confusion matrix")
+ax.set_xticks([0,1],["not spam","spam"])
+ax.set_yticks([0,1],["not spam","spam"])
+for i in range(len(cf_mat)):
+    for j in range(len(cf_mat[0])):
+        ax.text(j, i, cf_mat[i, j], ha="center", va="center", color="w")
+fig.tight_layout()
+plt.show()
 
 # FIXME: Compute the training accuracy.
 acc_test = metrics.accuracy_score(y_test, y_pred)
